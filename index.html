@@ -126,10 +126,9 @@
                         <span class="text-xl font-bold text-blue-600">ShopEase</span>
                     </div>
                     <!-- Desktop Navigation -->
+                       <!--  Thsi  -->
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <a href="#" class="nav-tab active border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-tab="home">Home</a>
-                        <a href="#" class="nav-tab border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-tab="deals">Today's Deals</a>
-                        <a href="#" class="nav-tab border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-tab="releases">New Releases</a>
                         <a href="#" class="nav-tab border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-tab="service">Customer Service</a>
                     </div>
                 </div>
@@ -391,406 +390,84 @@
             </div>
         </div>
         
-        <!-- Today's Deals Tab Content -->
-        <div id="deals" class="tab-content">
-            <div class="bg-blue-50 py-12">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="lg:flex lg:items-center lg:justify-between">
-                        <div class="flex-1 min-w-0">
-                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                                Deal of the Day
-                            </h2>
-                            <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
-                                <div class="mt-2 flex items-center text-sm text-gray-500">
-                                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                                    </svg>
-                                    Ends in 14h 32m
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-5 flex lg:mt-0 lg:ml-4">
-                            <div class="relative inline-block text-left">
-                                <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" id="view-all-deals" aria-expanded="false" aria-haspopup="true">
-                                    View All Deals
-                                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        <!-- Product 1 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Front of men's Basic Tee in black." class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Men's Cotton Tee
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">Black</p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-sm font-medium text-gray-900">$19.99</p>
-                                    <p class="text-xs text-gray-500 line-through">$29.99</p>
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">33% off</span>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Product 2 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Running shoes" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Performance Running Shoes
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">Blue</p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-sm font-medium text-gray-900">$74.95</p>
-                                    <p class="text-xs text-gray-500 line-through">$99.95</p>
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">25% off</span>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Product 3 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <img src="https://images.unsplash.com/photo-1533050487297-09b450131914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Smart watch" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Smart Watch Pro
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">Black</p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-sm font-medium text-gray-900">$149.00</p>
-                                    <p class="text-xs text-gray-500 line-through">$199.00</p>
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">25% off</span>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Product 4 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Wireless headphones" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Wireless Headphones
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">White</p>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-sm font-medium text-gray-900">$89.99</p>
-                                    <p class="text-xs text-gray-500 line-through">$129.99</p>
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">31% off</span>
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      
+<!-- Customer Service Tab Content -->
+<div id="service" class="tab-content">
+  <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Customer Service</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        We’re here to help! Whether you have a question, need support, or want to learn more, our team is available around the clock.  
+        Bare in mind that the site is just for viewing purposes and if you want to go ahead and any orders don't be afraid to reach out and give us a Call!
+      </p>
+    </div>
+    
+    <!-- Help Options -->
+    <div class="flex justify-center mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
+        
+        <!-- Call Us -->
+        <div class="bg-blue-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-blue-600 mb-4">
+            <i class="fas fa-phone-alt text-4xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">Call Us</h4>
+          <p class="text-gray-600 mb-2">Mon–Fri: 9am–8pm EST</p>
+          <p class="text-gray-900 font-semibold">1-800-SHOPEASE</p>
         </div>
         
-        <!-- New Releases Tab Content -->
-        <div id="releases" class="tab-content">
-            <div class="py-12">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">New Arrivals</h2>
-                
-                <div class="space-y-12">
-                    <!-- Featured Product -->
-                    <div class="group relative fade-in">
-                        <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1600&q=80" alt="New dress collection" class="w-full h-full object-center object-cover">
-                        </div>
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-lg font-medium text-gray-900">
-                                    <a href="#">
-                                        <span aria-hidden="true" class="absolute inset-0"></span>
-                                        Elegant Summer Dresses
-                                    </a>
-                                </h3>
-                                <p class="mt-1 text-sm text-gray-500">Floral patterns for the season</p>
-                            </div>
-                            <p class="text-lg font-medium text-gray-900">$39.99+</p>
-                        </div>
-                        <div class="mt-4">
-                            <button class="w-full bg-white border border-gray-300 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-50 transition duration-150">
-                                Shop Collection
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Product Grid -->
-                    <div class="mt-12 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        <!-- Product 5 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
-                                    New
-                                </div>
-                                <img src="https://images.unsplash.com/photo-1598520106830-8c45c2035460?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Backpack" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Travel Backpack Pro
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">Waterproof, 30L</p>
-                                </div>
-                                <p class="text-sm font-medium text-gray-900">$59.99</p>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Product 6 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
-                                    New
-                                </div>
-                                <img src="https://images.unsplash.com/photo-1584735429092-8ac7738bc708?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Slippers" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Comfort House Slippers
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">Memory foam</p>
-                                </div>
-                                <p class="text-sm font-medium text-gray-900">$29.95</p>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Product 7 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
-                                    New
-                                </div>
-                                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Sheer curtains" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Sheer Window Curtains
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">Set of 2 panels</p>
-                                </div>
-                                <p class="text-sm font-medium text-gray-900">$34.99</p>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Product 8 -->
-                        <div class="group relative product-card bg-white p-4 rounded-lg shadow-sm transition-transform duration-200 ease-in-out">
-                            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
-                                    New
-                                </div>
-                                <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80" alt="Sunglasses" class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            </div>
-                            <div class="mt-4 flex justify-between">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        <a href="#">
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Polarized Sunglasses
-                                        </a>
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">UV400 protection</p>
-                                </div>
-                                <p class="text-sm font-medium text-gray-900">$45.00</p>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-150">
-                                    Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Email Us -->
+        <div class="bg-green-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-green-600 mb-4">
+            <i class="fas fa-envelope text-4xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">Email Us</h4>
+          <p class="text-gray-600 mb-2">Response within 24 hours</p>
+          <p class="text-gray-900 font-semibold">support@shopease.com</p>
         </div>
         
-        <!-- Customer Service Tab Content -->
-        <div id="service" class="tab-content">
-            <div class="py-12">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8">Customer Service</h2>
-                
-                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">How Can We Help You?</h3>
-                    <p class="text-gray-600 mb-6">Our customer service team is available 24/7 to assist you with any questions or concerns you may have.</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-blue-50 p-6 rounded-lg">
-                            <div class="text-blue-600 mb-4">
-                                <i class="fas fa-phone-alt text-3xl"></i>
-                            </div>
-                            <h4 class="font-semibold text-lg mb-2">Call Us</h4>
-                            <p class="text-gray-600 mb-3">Monday-Friday: 9am-8pm EST</p>
-                            <p class="text-gray-800 font-medium">1-800-SHOPEASE</p>
-                        </div>
-                        
-                        <div class="bg-green-50 p-6 rounded-lg">
-                            <div class="text-green-600 mb-4">
-                                <i class="fas fa-envelope text-3xl"></i>
-                            </div>
-                            <h4 class="font-semibold text-lg mb-2">Email Us</h4>
-                            <p class="text-gray-600 mb-3">We'll respond within 24 hours</p>
-                            <p class="text-gray-800 font-medium">support@shopease.com</p>
-                        </div>
-                        
-                        <div class="bg-purple-50 p-6 rounded-lg">
-                            <div class="text-purple-600 mb-4">
-                                <i class="fas fa-comments text-3xl"></i>
-                            </div>
-                            <h4 class="font-semibold text-lg mb-2">Live Chat</h4>
-                            <p class="text-gray-600 mb-3">Available 24/7</p>
-                            <button class="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition duration-150">
-                                Start Chat
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Frequently Asked Questions</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="border-b pb-4">
-                                <h4 class="font-medium text-gray-800">How do I track my order?</h4>
-                                <p class="text-gray-600 mt-2">Once your order has shipped, you will receive a tracking number via email. You can use this number on our website or the carrier's website to track your package.</p>
-                            </div>
-                            
-                            <div class="border-b pb-4">
-                                <h4 class="font-medium text-gray-800">What is your return policy?</h4>
-                                <p class="text-gray-600 mt-2">We offer a 30-day return policy for most items. Items must be in original condition with tags attached. Some restrictions apply to certain product categories.</p>
-                            </div>
-                            
-                            <div class="border-b pb-4">
-                                <h4 class="font-medium text-gray-800">Do you offer international shipping?</h4>
-                                <p class="text-gray-600 mt-2">Yes, we ship to over 100 countries worldwide. Shipping costs and delivery times vary depending on the destination.</p>
-                            </div>
-                            
-                            <div>
-                                <h4 class="font-medium text-gray-800">How can I change or cancel my order?</h4>
-                                <p class="text-gray-600 mt-2">You can change or cancel your order within 1 hour of placing it by contacting our customer service team. After that time, we may not be able to make changes as your order may already be in process.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Contact Form</h3>
-                        <p class="text-gray-600 mb-6">Fill out the form below and we'll get back to you as soon as possible.</p>
-                        
-                        <form>
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                                <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    <option>Order Status</option>
-                                    <option>Return/Exchange</option>
-                                    <option>Product Information</option>
-                                    <option>Website Feedback</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-150">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <!-- WhatsApp -->
+        <div class="bg-green-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-green-600 mb-4">
+            <i class="fab fa-whatsapp text-4xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">WhatsApp</h4>
+          <p class="text-gray-600 mb-2">Chat with us instantly on WhatsApp.</p>
+          <p class="text-gray-900 font-semibold">+1 (800) 123-4567</p>
         </div>
-        
+
+        <!-- Facebook -->
+        <div class="bg-blue-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-blue-600 mb-4">
+            <i class="fab fa-facebook text-4xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">Facebook</h4>
+          <p class="text-gray-600 mb-2">Follow us on Facebook for updates.</p>
+          <p class="text-gray-900 font-semibold">facebook.com/shopease</p>
+        </div>
+
+        <!-- Instagram -->
+        <div class="bg-pink-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="text-pink-600 mb-4">
+            <i class="fab fa-instagram text-4xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2">Instagram</h4>
+          <p class="text-gray-600 mb-2">See our latest posts on Instagram.</p>
+          <p class="text-gray-900 font-semibold">@shopease</p>
+        </div>
+      </div>
+    </div>
+    
+ 
+  </div>
+</div>
+
+
+
         <!-- Category Pages -->
+
         <!-- Clothing Category Page -->
         <div id="category-clothing" class="category-page" data-previous-tab="home">
             <div class="py-8">
