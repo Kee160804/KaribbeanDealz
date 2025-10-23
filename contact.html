@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ===== META & STYLES SECTION ===== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Karibbean Dealz</title>
+    
+    <!-- External Libraries & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+
+<body class="min-h-screen">
+    <!-- ===== DEMO NOTIFICATION ===== -->
+    <div class="demo-notification">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-exclamation-triangle text-amber-500 text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-amber-800">
+                    <strong>Demo Site:</strong> This is a presentation showcase. All products and functionality are for demonstration purposes.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVIGATION SECTION ===== -->
+    <nav class="nav-blur sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="home.html" class="text-2xl font-bold text-gradient">Karibbean Dealz</a>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="home.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-200">Products</a>
+                    <a href="contact.html" class="text-indigo-600 font-semibold transition-colors duration-200">Contact</a>
+                    <a href="products.html" class="btn-primary text-white px-6 py-3 rounded-full font-medium shadow-lg">
+                        <i class="fas fa-shopping-bag mr-2"></i>Shop Now
+                    </a>
+                    
+                    <!-- Cart Icon -->
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart text-xl text-gray-700"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button & Cart -->
+                <div class="md:hidden flex items-center">
+                    <!-- Cart Icon for Mobile -->
+                    <div class="cart-icon mr-4" id="cartIconMobile">
+                        <i class="fas fa-shopping-cart text-xl text-gray-700"></i>
+                        <span class="cart-count" id="cartCountMobile">0</span>
+                    </div>
+                    <button title="btn" id="mobileMenuButton" class="text-gray-700 hover:text-indigo-600 p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-50 bg-white md:hidden">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b">
+                <span class="text-2xl font-bold text-gradient">Karibbean Dealz</span>
+                <button title="btn" id="closeMobileMenu" class="text-gray-700 p-2">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex-1 p-6 space-y-6">
+                <a href="home.html" class="block text-xl font-medium text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
+                <a href="products.html" class="block text-xl font-medium text-gray-700 hover:text-indigo-600 transition-colors">Products</a>
+                <a href="contact.html" class="block text-xl font-medium text-indigo-600 transition-colors">Contact</a>
+                <a href="products.html" class="btn-primary text-white px-8 py-4 rounded-full font-medium w-full mt-8 shadow-lg block text-center">
+                    <i class="fas fa-shopping-bag mr-2"></i>Start Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CART SIDEBAR ===== -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="flex justify-between items-center p-4 border-b">
+            <h2 class="text-xl font-bold">Your Cart</h2>
+            <button title="btn" id="closeCart" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="openCheckoutModal()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- ===== CHECKOUT MODAL ===== -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-form">
+            <h2 class="text-2xl font-bold mb-6">Complete Your Order</h2>
+            
+            <div class="order-summary">
+                <h3 class="text-lg font-semibold mb-4">Order Summary</h3>
+                <div id="orderSummaryItems">
+                    <!-- Order summary items will be dynamically added here -->
+                </div>
+                <div class="order-summary-total">
+                    <span class="font-semibold">Total:</span>
+                    <span id="orderSummaryTotal" class="font-bold text-indigo-600">$0.00</span>
+                </div>
+            </div>
+
+            <form id="checkoutForm">
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="phone" class="form-label">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" required>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="address" class="form-label">Delivery Address *</label>
+                    <textarea id="address" name="address" class="form-input" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label class="form-label">Payment Method *</label>
+                    <div class="payment-methods">
+                        <div class="payment-method selected" data-method="cash">
+                            <i class="fas fa-money-bill-wave text-2xl mb-2"></i>
+                            <p>Cash on Delivery</p>
+                        </div>
+                        <div class="payment-method" data-method="transfer">
+                            <i class="fas fa-university text-2xl mb-2"></i>
+                            <p>Bank Transfer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-6">
+                    <label for="notes" class="form-label">Order Notes (Optional)</label>
+                    <textarea id="notes" name="notes" class="form-input" rows="3" placeholder="Any special delivery instructions or notes..."></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" id="cancelCheckout">Cancel</button>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Place Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== SUCCESS MODAL ===== -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 class="success-title">Order Placed Successfully!</h2>
+            <p class="success-message">Your order has been received and will be processed shortly. You will receive a confirmation message shortly.</p>
+            <div class="success-actions">
+                <button class="btn-whatsapp" id="whatsappBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    Track on WhatsApp
+                </button>
+                <button class="btn-close" id="closeSuccess">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT SECTION ===== -->
+    <main class="flex-1">
+        <!-- ===== CONTACT HEADER SECTION ===== -->
+        <div class="category-header">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <a href="home.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </a>
+                <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+                <p class="text-xl opacity-90">Get in touch with our friendly team</p>
+            </div>
+        </div>
+
+        <!-- ===== CONTACT INFORMATION SECTION ===== -->
+        <div class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    
+                    <!-- ===== CONTACT DETAILS ===== -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8">Get in Touch</h2>
+                        <p class="text-lg text-gray-600 mb-8">
+                            We'd love to hear from you! Whether you have questions about our products, 
+                            need assistance with an order, or just want to share your experience, 
+                            our team is here to help.
+                        </p>
+
+                        <div class="space-y-6">
+                            <!-- Phone Contact -->
+                            <div class="contact-method flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-phone-alt text-blue-600 text-lg"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-1">Call Us</h3>
+                                    <p class="text-gray-600 mb-2">Mon-Sat: 8am–9pm</p>
+                                    <div class="space-y-1">
+                                        <a href="tel:6141502" class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors block">
+                                            <i class="fas fa-phone mr-2 text-sm"></i>614-1502
+                                        </a>
+                                        <a href="tel:6111904" class="text-xl font-bold text-gray-900 hover:text-indigo-600 transition-colors block">
+                                            <i class="fas fa-phone mr-2 text-sm"></i>611-1904
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp Contact -->
+                            <div class="contact-method flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                        <i class="fab fa-whatsapp text-green-600 text-lg"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-1">WhatsApp</h3>
+                                    <p class="text-gray-600 mb-2">24/7 Chat Support</p>
+                                   <a href="https://wa.me/18001234567" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        class="text-xl font-bold text-gray-900 hover:text-green-600 transition-colors block">
+                                            <i class="fab fa-whatsapp mr-2 text-sm"></i> +1 (800) 123-4567
+                                        </a>
+
+                                    <button class="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors" onclick="openWhatsApp()">
+                                        <i class="fab fa-whatsapp mr-2"></i>Chat Now
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Email Contact -->
+                            <div class="contact-method flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-envelope text-purple-600 text-lg"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-1">Email</h3>
+                                    <p class="text-gray-600 mb-2">Response within 24 hours</p>
+                                    <a href="mailto:support@KaribbeanDealz.com" class="text-lg font-bold text-gray-900 hover:text-purple-600 transition-colors block">
+                                        <i class="fas fa-envelope mr-2 text-sm"></i>support@KaribbeanDealz.com
+                                    </a>
+                                    <button class="mt-2 bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-600 transition-colors" onclick="openEmail()">
+                                        <i class="fas fa-envelope mr-2"></i>Send Email
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="contact-method flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-orange-600 text-lg"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-1">Visit Us</h3>
+                                    <p class="text-gray-600">123 Beauty Street<br>Kingston, Jamaica</p>
+                                    <button class="mt-2 bg-orange-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-orange-600 transition-colors" onclick="openMaps()">
+                                        <i class="fas fa-map-marker-alt mr-2"></i>Get Directions
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Business Hours -->
+                        <div class="mt-8 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Business Hours</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Monday - Friday</span>
+                                    <span class="font-semibold text-gray-900">8:00 AM - 9:00 PM</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Saturday</span>
+                                    <span class="font-semibold text-gray-900">9:00 AM - 6:00 PM</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2">
+                                    <span class="text-gray-600">Sunday</span>
+                                    <span class="font-semibold text-gray-900">10:00 AM - 4:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== CONTACT FORM ===== -->
+                    <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+                        <form id="contactForm" class="space-y-6">
+                            <!-- Name Fields -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label for="firstName" class="form-label">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" class="form-label">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <!-- Email Field -->
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+
+                            <!-- Phone Field -->
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                            </div>
+
+                            <!-- Subject Dropdown -->
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <select id="subject" name="subject" class="form-input" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="product">Product Question</option>
+                                    <option value="order">Order Support</option>
+                                    <option value="shipping">Shipping Information</option>
+                                    <option value="returns">Returns & Exchanges</option>
+                                    <option value="wholesale">Wholesale Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Message Textarea -->
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea id="message" name="message" rows="6" class="form-input" placeholder="Tell us how we can help you..." required></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn-primary w-full py-4 rounded-xl font-semibold text-lg">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FAQ SECTION ===== -->
+        <div class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                    <p class="text-lg text-gray-600">Quick answers to common questions</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- FAQ Item 1: Shipping -->
+                    <div class="faq-item bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                        <button class="faq-question w-full text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-900">What are your shipping options and delivery times?</span>
+                            <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p class="mb-3">We offer multiple shipping options to suit your needs:</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li><strong>Standard Shipping:</strong> 3-5 business days - Free on orders over $50</li>
+                                <li><strong>Express Shipping:</strong> 1-2 business days - $9.99</li>
+                                <li><strong>Overnight Shipping:</strong> Next business day - $19.99</li>
+                            </ul>
+                            <p class="mt-3">All orders placed before 2 PM EST are processed the same day. Delivery times may vary based on your location.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2: Returns -->
+                    <div class="faq-item bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                        <button class="faq-question w-full text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-900">What is your return policy?</span>
+                            <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p class="mb-3">We want you to be completely satisfied with your purchase:</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li><strong>30-Day Return Policy:</strong> Return unused and unopened products within 30 days</li>
+                                <li><strong>Original Packaging:</strong> Items must be in their original packaging with proof of purchase</li>
+                                <li><strong>Free Returns:</strong> Return shipping is free for defective products</li>
+                                <li><strong>Refund Processing:</strong> Refunds are processed within 5-7 business days</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3: International Shipping -->
+                    <div class="faq-item bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                        <button class="faq-question w-full text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-900">Do you offer international shipping?</span>
+                            <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p class="mb-3">Yes! We ship to over 50 countries worldwide:</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li><strong>International Standard:</strong> 7-14 business days - Rates vary by location</li>
+                                <li><strong>International Express:</strong> 3-7 business days - $24.99</li>
+                                <li><strong>Customs & Duties:</strong> Additional fees may apply depending on your country's regulations</li>
+                            </ul>
+                            <p class="mt-3">During checkout, you'll see the exact shipping costs for your location.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4: Order Tracking -->
+                    <div class="faq-item bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                        <button class="faq-question w-full text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-900">How can I track my order?</span>
+                            <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p class="mb-3">Tracking your order is easy:</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li><strong>Email Notification:</strong> You'll receive a tracking number via email once your order ships</li>
+                                <li><strong>Account Dashboard:</strong> Log into your account to view order status and tracking</li>
+                                <li><strong>Customer Service:</strong> Contact our team for real-time updates</li>
+                                <li><strong>SMS Updates:</strong> Opt-in for text message updates on major shipping milestones</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5: Product Quality -->
+                    <div class="faq-item bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                        <button class="faq-question w-full text-left flex justify-between items-center">
+                            <span class="text-lg font-semibold text-gray-900">Are your products cruelty-free and vegan?</span>
+                            <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer mt-4 text-gray-600 hidden">
+                            <p class="mb-3">We're committed to ethical and sustainable practices:</p>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li><strong>Cruelty-Free:</strong> All our products are certified cruelty-free</li>
+                                <li><strong>Vegan Options:</strong> Over 80% of our products are vegan-friendly</li>
+                                <li><strong>Natural Ingredients:</strong> We prioritize natural, sustainably sourced ingredients</li>
+                                <li><strong>Eco-Friendly Packaging:</strong> Our packaging is recyclable and biodegradable</li>
+                            </ul>
+                            <p class="mt-3">Look for the vegan and cruelty-free badges on product pages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER SECTION ===== -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gradient mb-4">Karibbean Dealz</h3>
+                    <p class="text-gray-400 mb-6">
+                        Your trusted partner for premium beauty products and exceptional shopping experiences.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" title="Facebook" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" title="Instagram" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" title="Twitter" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping Info</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Returns</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Care -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Customer Care</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Track Order</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Size Guide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-semibold mb-4 text-white">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for updates and exclusive offers</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="flex-1 bg-gray-800 text-white px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <button title="btn" class="btn-primary text-white px-6 py-3 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2024 Karibbean Dealz. All rights reserved. 
+                    <span class="text-gray-500">(Demo Presentation)</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+    <button title="btn" id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hidden z-50">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ===== JAVASCRIPT SECTION ===== -->
+    <script src="shared.js"></script>
+    <script>
+        // ===== CONTACT PAGE SPECIFIC JAVASCRIPT =====
+
+        // ===== CHECKOUT MODAL FUNCTIONALITY =====
+        function openCheckoutModal() {
+            const checkoutModal = document.getElementById('checkoutModal');
+            const orderSummaryItems = document.getElementById('orderSummaryItems');
+            const orderSummaryTotal = document.getElementById('orderSummaryTotal');
+            
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'warning');
+                return;
+            }
+            
+            // Update order summary
+            orderSummaryItems.innerHTML = cart.map(item => `
+                <div class="order-summary-item flex justify-between py-2 border-b border-gray-200">
+                    <span class="text-sm">${item.name} x ${item.quantity}</span>
+                    <span class="text-sm font-semibold">$${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+            
+            orderSummaryTotal.textContent = `$${calculateTotal()}`;
+            
+            // Show checkout modal
+            checkoutModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCheckoutModal() {
+            const checkoutModal = document.getElementById('checkoutModal');
+            checkoutModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== QUICK CONTACT FUNCTIONS =====
+        function openWhatsApp() {
+            const message = encodeURIComponent("Hello! I'd like to get more information about Karibbean Dealz products.");
+            window.open(`https://wa.me/18001234567?text=${message}`, '_blank');
+        }
+
+        function openEmail() {
+            const subject = encodeURIComponent("Inquiry from Karibbean Dealz Website");
+            const body = encodeURIComponent("Hello Karibbean Dealz team,\n\nI would like to inquire about...");
+            window.open(`mailto:support@KaribbeanDealz.com?subject=${subject}&body=${body}`, '_self');
+        }
+
+        function openMaps() {
+            const address = encodeURIComponent("123 Beauty Street, Kingston, Jamaica");
+            window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+        }
+
+        // ===== CONTACT FORM FUNCTIONALITY =====
+        function initContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                // Create message containers
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message hidden';
+                successMessage.innerHTML = `
+                    <div class="flex items-center p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <i class="fas fa-check-circle text-green-600 mr-3 text-lg"></i>
+                        <div>
+                            <h4 class="font-semibold text-green-800">Message Sent Successfully!</h4>
+                            <p class="text-green-700 text-sm">Thank you for contacting us. We'll get back to you within 24 hours.</p>
+                        </div>
+                    </div>
+                `;
+
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message hidden';
+                errorMessage.innerHTML = `
+                    <div class="flex items-center p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <i class="fas fa-exclamation-circle text-red-600 mr-3 text-lg"></i>
+                        <div>
+                            <h4 class="font-semibold text-red-800">Message Failed to Send</h4>
+                            <p class="text-red-700 text-sm">Please try again or contact us directly via phone or WhatsApp.</p>
+                        </div>
+                    </div>
+                `;
+
+                // Insert messages at the top of the form
+                contactForm.insertBefore(errorMessage, contactForm.firstChild);
+                contactForm.insertBefore(successMessage, contactForm.firstChild);
+
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state on submit button
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                    submitButton.disabled = true;
+
+                    // Hide previous messages
+                    successMessage.classList.add('hidden');
+                    errorMessage.classList.add('hidden');
+
+                    // Get form data
+                    const formData = new FormData(contactForm);
+                    const contactData = {
+                        firstName: formData.get('firstName'),
+                        lastName: formData.get('lastName'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        subject: formData.get('subject'),
+                        message: formData.get('message'),
+                        timestamp: new Date().toLocaleString()
+                    };
+
+                    try {
+                        // Simulate API call delay
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        
+                        // For demo purposes, simulate successful submission
+                        console.log('Contact form submitted:', contactData);
+                        
+                        // Show success message
+                        successMessage.classList.remove('hidden');
+                        errorMessage.classList.add('hidden');
+                        
+                        // Reset form fields
+                        contactForm.reset();
+                        
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            successMessage.classList.add('hidden');
+                        }, 5000);
+                        
+                    } catch (error) {
+                        console.error('Contact form error:', error);
+                        
+                        // Show error message
+                        errorMessage.classList.remove('hidden');
+                        successMessage.classList.add('hidden');
+                    } finally {
+                        // Reset button to original state
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }
+                });
+            }
+        }
+
+        // ===== FAQ FUNCTIONALITY =====
+        function initFAQ() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle active class on question
+                    this.classList.toggle('active');
+                    
+                    // Toggle answer visibility with smooth transition
+                    if (answer.classList.contains('hidden')) {
+                        answer.classList.remove('hidden');
+                        answer.style.maxHeight = '0px';
+                        setTimeout(() => {
+                            answer.style.maxHeight = answer.scrollHeight + 'px';
+                        }, 10);
+                    } else {
+                        answer.style.maxHeight = '0px';
+                        setTimeout(() => {
+                            answer.classList.add('hidden');
+                        }, 300);
+                    }
+                    
+                    // Rotate chevron icon for visual feedback
+                    icon.style.transform = this.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+                });
+            });
+        }
+
+        // ===== CHECKOUT FUNCTIONALITY =====
+        function initCheckout() {
+            const checkoutForm = document.getElementById('checkoutForm');
+            const cancelCheckout = document.getElementById('cancelCheckout');
+            const successModal = document.getElementById('successModal');
+            const closeSuccess = document.getElementById('closeSuccess');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+
+            // Cancel checkout
+            if (cancelCheckout) {
+                cancelCheckout.addEventListener('click', closeCheckoutModal);
+            }
+
+            // Payment method selection
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Submit checkout form
+            if (checkoutForm) {
+                checkoutForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const submitButton = checkoutForm.querySelector('.btn-submit');
+                    const originalText = submitButton.innerHTML;
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+                    submitButton.disabled = true;
+
+                    // Get form data
+                    const formData = new FormData(checkoutForm);
+                    const orderData = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        address: formData.get('address'),
+                        notes: formData.get('notes'),
+                        paymentMethod: document.querySelector('.payment-method.selected').getAttribute('data-method'),
+                        items: [...cart],
+                        total: calculateTotal()
+                    };
+
+                    try {
+                        // Process the order
+                        const success = await processCheckout(orderData);
+                        
+                        if (success) {
+                            // Close checkout modal
+                            closeCheckoutModal();
+                            
+                            // Show success modal
+                            successModal.classList.add('active');
+                            
+                            // Store order data for WhatsApp tracking
+                            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+                        }
+                    } catch (error) {
+                        console.error('Checkout error:', error);
+                        showNotification('There was an error processing your order. Please try again.', 'error');
+                    } finally {
+                        // Reset button state
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }
+                });
+            }
+
+            // Close success modal
+            if (closeSuccess) {
+                closeSuccess.addEventListener('click', function() {
+                    successModal.classList.remove('active');
+                });
+            }
+
+            // WhatsApp tracking button
+            if (whatsappBtn) {
+                whatsappBtn.addEventListener('click', function() {
+                    const orderData = JSON.parse(localStorage.getItem('lastOrder'));
+                    if (orderData) {
+                        const phoneNumber = '18001234567';
+                        const message = `Order Inquiry - ${orderData.name} - Order Total: $${orderData.total}`;
+                        const encodedMessage = encodeURIComponent(message);
+                        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+                    }
+                });
+            }
+        }
+
+        // ===== ANIMATIONS =====
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe contact methods and form elements for animation
+            const animatedElements = document.querySelectorAll('.contact-method, .form-group, .faq-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // ===== PAGE INITIALIZATION =====
+        function initContactPage() {
+            initContactForm();
+            initFAQ();
+            initCheckout();
+            initAnimations();
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initContactPage();
+        });
+    </script>
+</body>
+</html>
